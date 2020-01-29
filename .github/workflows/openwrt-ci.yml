@@ -7,12 +7,12 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: OpenWrt-CI
+name: NanoPi R1S
 
 on:
-  #push:
-  #  branches: 
-  #    - master
+   push:
+     branches: 
+       - master
    schedule:
      - cron: 0 20 * * *
    release:
@@ -89,9 +89,9 @@ jobs:
           # 
           # 编译x64固件:
            cat >> .config <<EOF
-           CONFIG_TARGET_x86=y
-           CONFIG_TARGET_x86_64=y
-           CONFIG_TARGET_x86_64_Generic=y
+           CONFIG_TARGET_sunxi=y
+           CONFIG_TARGET_sunxi_cortexa53=y
+           CONFIG_TARGET_sunxi_cortexa53_Default=y
            EOF
           # 固件压缩:
            cat >> .config <<EOF
@@ -140,12 +140,14 @@ jobs:
            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
            CONFIG_PACKAGE_luci-app-ttyd=y
            CONFIG_PACKAGE_luci-app-v2ray-server=y
            CONFIG_PACKAGE_luci-app-verysync=y
            CONFIG_PACKAGE_luci-app-webadmin=y
            CONFIG_PACKAGE_luci-app-wireguard=y
            CONFIG_PACKAGE_luci-app-wrtbwmon=y
+           CONFIG_PACKAGE_luci-app-ssr-plus=y
            EOF
           # LuCI主题:
            cat >> .config <<EOF
